@@ -1,0 +1,52 @@
+{
+  "devices": [
+    {"name": "DL101",  "type": "开关",   "state": "合"},
+    {"name": "QS1011", "type": "刀闸",   "state": "合"},
+    {"name": "JD101",  "type": "接地线", "state": "分"},
+    {"name": "BH101",  "type": "保护",   "state": "投入"}
+  ],
+  "tickets": [
+    {"name": "停电票", "prerequisites": [],
+     "steps": [
+       {"device": "DL101",  "target": "分"},
+       {"device": "QS1011", "target": "分"},
+       {"device": "JD101",  "target": "挂"}
+     ]},
+    {"name": "送电票", "prerequisites": ["停电票"],
+     "steps": [
+       {"device": "JD101",  "target": "分"},
+       {"device": "QS1011", "target": "合"},
+       {"device": "DL101",  "target": "合"}
+     ]},
+    {"name": "临时合开关", "prerequisites": [],
+     "steps": [ {"device": "DL101", "target": "合"} ]},
+    {"name": "退保护后合闸", "prerequisites": ["送电票"],
+     "steps": [
+       {"device": "BH101", "target": "退出"},
+       {"device": "DL101", "target": "分"},
+       {"device": "DL101", "target": "合"}
+     ]},
+    {"name": "坏票", "prerequisites": ["幽灵票"],
+     "steps": [ {"device": "QS999", "target": "合"} ]}
+  ],
+  "operations": [
+    {"ticket": "送电票",       "step": 1, "target": "分"},
+    {"ticket": "停电票",       "step": 2, "target": "分"},
+    {"ticket": "停电票",       "step": 1, "target": "分"},
+    {"ticket": "停电票",       "step": 1, "target": "分"},
+    {"ticket": "停电票",       "step": 2, "target": "合"},
+    {"ticket": "停电票",       "step": 2, "target": "分"},
+    {"ticket": "停电票",       "step": 3, "target": "挂"},
+    {"ticket": "临时合开关",   "step": 1, "target": "合"},
+    {"ticket": "送电票",       "step": 2, "target": "合"},
+    {"ticket": "送电票",       "step": 1, "target": "分"},
+    {"ticket": "送电票",       "step": 3, "target": "合"},
+    {"ticket": "送电票",       "step": 2, "target": "合"},
+    {"ticket": "送电票",       "step": 3, "target": "合"},
+    {"ticket": "退保护后合闸", "step": 1, "target": "退出"},
+    {"ticket": "退保护后合闸", "step": 2, "target": "分"},
+    {"ticket": "退保护后合闸", "step": 3, "target": "合"},
+    {"ticket": "幽灵票",       "step": 1, "target": "合"},
+    {"ticket": "停电票",       "step": 9, "target": "分"}
+  ]
+}
