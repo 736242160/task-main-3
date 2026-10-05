@@ -1,0 +1,27 @@
+{
+  "drugs": [
+    {"name": "阿司匹林", "max_daily_dose": 300, "max_course_days": 14},
+    {"name": "华法林", "max_daily_dose": 10, "max_course_days": 30},
+    {"name": "布洛芬", "max_daily_dose": 1200, "max_course_days": 10},
+    {"name": "氯吡格雷", "max_daily_dose": 75, "max_course_days": 30}
+  ],
+  "interactions": [
+    {"a": "阿司匹林", "b": "华法林", "level": "禁忌"},
+    {"a": "阿司匹林", "b": "布洛芬", "level": "慎用"},
+    {"a": "华法林", "b": "布洛芬", "level": "慎用"}
+  ],
+  "prescriptions": [
+    {"patient": "P1", "date": "2026-01-01", "drug": "阿司匹林", "daily_dose": 100, "days": 7},
+    {"patient": "P1", "date": "2026-01-02", "drug": "华法林", "daily_dose": 5, "days": 10},
+    {"patient": "P1", "date": "2026-01-03", "drug": "阿司匹林", "daily_dose": 250, "days": 5},
+    {"patient": "P1", "date": "2026-01-03", "drug": "阿司匹林", "daily_dose": 50, "days": 3},
+    {"patient": "P1", "date": "2026-01-04", "drug": "神药", "daily_dose": 10, "days": 5},
+    {"patient": "P2", "date": "2026-01-01", "drug": "布洛芬", "daily_dose": 400, "days": 6},
+    {"patient": "P2", "date": "2026-01-05", "drug": "布洛芬", "daily_dose": 400, "days": 6},
+    {"patient": "P2", "date": "2026-01-06", "drug": "阿司匹林", "daily_dose": 100, "days": 5}
+  ],
+  "stops": [
+    {"patient": "P1", "date": "2026-01-04", "drug": "华法林"},
+    {"patient": "P1", "date": "2026-01-09", "drug": "氯吡格雷"}
+  ]
+}
